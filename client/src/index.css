@@ -89,3 +89,20 @@ button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 2px sol
 @layer base {
   * { @apply border-border outline-ring/50; }
 }
+
+.reader-rail { scrollbar-width: thin; scrollbar-color: rgba(216,181,240,.25) transparent; }
+.reader-card { position: relative; height: 220px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); border-radius: 20px; background: #211a36; text-align: left; transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
+.reader-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--reader-accent) 60%, transparent); }
+.reader-card.selected { border-color: var(--reader-accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--reader-accent) 24%, transparent), 0 18px 32px rgba(0,0,0,.2); }
+.reader-card img { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; object-position: center top; filter: saturate(.85); }
+.reader-card-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,12,25,.04) 30%, rgba(15,12,25,.94) 100%); }
+.reader-card-copy { position: absolute; bottom: 15px; left: 14px; right: 14px; display: flex; flex-direction: column; gap: 4px; }
+.reader-card-copy strong { color: #fff7ef; font-family: "Fraunces", serif; font-size: 19px; letter-spacing: -.03em; }
+.reader-card-copy small { color: rgba(255,255,255,.52); font-size: 10px; text-transform: uppercase; letter-spacing: .12em; }
+.reader-check { position: absolute; right: 12px; top: 12px; display: grid; height: 24px; width: 24px; place-items: center; border-radius: 50%; background: var(--reader-accent); color: #1a1126; font-size: 12px; font-weight: 800; }
+.mode-pill { display: flex; min-width: 138px; flex-direction: column; gap: 4px; border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 10px 12px; text-align: left; color: rgba(255,255,255,.48); transition: all 180ms ease; }
+.mode-pill span { font-size: 12px; font-weight: 700; white-space: nowrap; }
+.mode-pill small { font-size: 10px; line-height: 1.35; color: rgba(255,255,255,.28); }
+.mode-pill:hover { border-color: rgba(216,181,240,.35); color: #fff; }
+.mode-pill.selected { border-color: rgba(216,181,240,.58); background: rgba(216,181,240,.12); color: #f0dffc; }
+.mode-pill.selected small { color: rgba(240,223,252,.62); }
