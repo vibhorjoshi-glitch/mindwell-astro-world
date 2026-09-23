@@ -6,10 +6,6 @@
 @theme inline {
   --font-sans: "DM Sans", sans-serif;
   --font-display: "Fraunces", serif;
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -18,165 +14,78 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
 }
 
 :root {
-  --primary: oklch(0.76 0.11 66);
-  --primary-foreground: oklch(0.19 0.04 300);
-  --radius: 0.7rem;
-  --background: oklch(0.18 0.035 300);
+  --radius: 0.75rem;
+  --background: oklch(0.16 0.035 292);
   --foreground: oklch(0.96 0.018 85);
-  --card: oklch(0.22 0.04 300);
+  --card: oklch(0.2 0.04 292);
   --card-foreground: oklch(0.96 0.018 85);
-  --popover: oklch(0.22 0.04 300);
+  --popover: oklch(0.2 0.04 292);
   --popover-foreground: oklch(0.96 0.018 85);
-  --secondary: oklch(0.27 0.045 300);
-  --secondary-foreground: oklch(0.91 0.018 85);
-  --muted: oklch(0.27 0.045 300);
-  --muted-foreground: oklch(0.7 0.03 300);
-  --accent: oklch(0.3 0.04 300);
-  --accent-foreground: oklch(0.96 0.018 85);
-  --destructive: oklch(0.62 0.2 26);
-  --destructive-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.78 0.12 307);
+  --primary-foreground: oklch(0.17 0.04 292);
+  --muted: oklch(0.28 0.045 292);
+  --muted-foreground: oklch(0.72 0.035 292);
   --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.78 0.12 66);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.78 0.12 307);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: #100e1b; }
+body { margin: 0; min-width: 320px; background: #100e1b; color: #f7f1e8; font-family: "DM Sans", sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+button, a, textarea { font: inherit; }
+button:not(:disabled), a[href], textarea { cursor: pointer; }
+button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 2px solid #d8b5f0; outline-offset: 3px; }
+.font-display { font-family: "Fraunces", serif; }
 
-html {
-  scroll-behavior: smooth;
-  background: #16121f;
-}
+.tarot-app { background-image: radial-gradient(circle at 20% 0%, rgba(120, 87, 162, .13), transparent 28rem), radial-gradient(circle at 100% 35%, rgba(201, 126, 86, .08), transparent 25rem); }
+.eyebrow { display: inline-flex; align-items: center; gap: .5rem; color: rgba(255,255,255,.46); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; }
+.sidebar-link { display: flex; align-items: center; gap: .75rem; min-height: 42px; padding: .75rem .8rem; border-radius: 13px; color: rgba(255,255,255,.42); font-size: 12px; font-weight: 600; transition: background 180ms ease, color 180ms ease, transform 180ms ease; }
+.sidebar-link:hover { background: rgba(255,255,255,.055); color: rgba(255,255,255,.85); transform: translateX(2px); }
+.sidebar-link.active { background: rgba(216,181,240,.11); color: #e5cef7; }
+.spread-pill { border: 1px solid rgba(255,255,255,.1); border-radius: 999px; padding: .55rem .8rem; color: rgba(255,255,255,.42); font-size: 11px; transition: all 180ms ease; }
+.spread-pill:hover { border-color: rgba(216,181,240,.35); color: rgba(255,255,255,.75); }
+.spread-pill.selected { border-color: rgba(216,181,240,.5); background: rgba(216,181,240,.12); color: #e6d4f5; }
 
-body {
-  margin: 0;
-  min-width: 320px;
-  background: #16121f;
-  color: #f7f0e7;
-  font-family: "DM Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
+.tarot-card { position: absolute; width: 126px; height: 194px; border-radius: 14px; padding: 5px; border: 1px solid rgba(239,216,255,.28); background: linear-gradient(145deg, #8c65a9, #30213e 68%, #171124); box-shadow: 0 20px 45px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.07); transition: transform 260ms cubic-bezier(.23,1,.32,1), filter 260ms ease; }
+.tarot-card:hover { filter: brightness(1.12); transform: translateY(-11px) rotate(0deg) !important; z-index: 5; }
+.tarot-card-inner { display: flex; height: 100%; flex-direction: column; align-items: center; justify-content: space-between; border: 1px solid rgba(239,216,255,.24); border-radius: 10px; padding: 12px 8px; background: radial-gradient(circle at 50% 40%, rgba(220,183,248,.3), transparent 34%), linear-gradient(160deg, rgba(255,255,255,.08), transparent 50%); }
+.card-0 { left: 2%; bottom: 5px; transform: rotate(-12deg); z-index: 2; }
+.card-1 { left: 32%; bottom: 23px; transform: rotate(1deg); z-index: 3; }
+.card-2 { right: 2%; bottom: 5px; transform: rotate(12deg); z-index: 1; }
+.card-corner { align-self: flex-start; color: #efd5ff; font-size: 13px; }
+.card-sigil { display: flex; flex-direction: column; align-items: center; gap: 8px; color: #edcfff; opacity: .9; }
+.card-sigil span { font-size: 9px; letter-spacing: .16em; }
+.card-name { max-width: 90px; text-align: center; color: #fff4f8; font-family: "Fraunces", serif; font-size: 16px; line-height: .95; }
+.card-1 .card-sigil svg { color: #e1a576; }
+.card-2 .card-sigil svg { color: #e9d1ff; }
+.tarot-card.reversed .tarot-card-inner { transform: rotate(180deg); }
+.tarot-card.reversed .card-name { transform: rotate(180deg); }
 
-button,
-a,
-input {
-  font: inherit;
-}
+.empty-state { display: grid; min-height: 220px; place-items: center; align-content: center; border: 1px dashed rgba(255,255,255,.12); border-radius: 24px; text-align: center; }
+.history-card { min-height: 168px; border: 1px solid rgba(255,255,255,.1); border-radius: 19px; background: rgba(255,255,255,.035); padding: 18px; transition: border-color 180ms ease, background 180ms ease, transform 180ms ease; }
+.history-card:hover { border-color: rgba(216,181,240,.3); background: rgba(216,181,240,.07); transform: translateY(-3px); }
 
-button:not(:disabled),
-a[href],
-input[type="checkbox"] {
-  cursor: pointer;
-}
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible {
-  outline: 2px solid #e6b887;
-  outline-offset: 3px;
-}
-
-.font-display {
-  font-family: "Fraunces", serif;
-}
-
-.noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
-  mix-blend-mode: soft-light;
-}
-
-.glow {
-  animation: drift 12s ease-in-out infinite alternate;
-}
-
-.glow-two {
-  animation-delay: -4s;
-  animation-duration: 16s;
-}
-
-.hero-copy {
-  animation: rise-in 700ms cubic-bezier(0.23, 1, 0.32, 1) both;
-}
-
-.hero-orbit {
-  animation: orbit 16s linear infinite;
-}
-
-.hero-orbit-delayed {
-  animation-direction: reverse;
-  animation-duration: 21s;
-}
-
-.breath-dot {
-  animation: breathe 6s ease-in-out infinite;
-}
-
-.benefit-card {
-  min-height: 238px;
-  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 220ms ease;
-}
-
-.benefit-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 34px rgba(56, 45, 44, 0.1);
-}
-
-.benefit-card.peach {
-  background: #e9c7ad;
-}
-
-.benefit-card.lilac {
-  background: #d8c8e7;
-}
-
-.benefit-card.sage {
-  background: #c2d6c0;
-}
-
-@keyframes rise-in {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes drift {
-  from { transform: translate3d(-2%, -1%, 0) scale(1); }
-  to { transform: translate3d(4%, 3%, 0) scale(1.08); }
-}
-
-@keyframes orbit {
-  from { transform: rotate(0deg) scale(1); }
-  to { transform: rotate(360deg) scale(1.03); }
-}
-
-@keyframes breathe {
-  0%, 100% { transform: scale(0.85); opacity: 0.7; }
-  40% { transform: scale(1.8); opacity: 1; }
-  65% { transform: scale(1.8); opacity: 1; }
+@media (max-width: 640px) {
+  .tarot-card { width: 104px; height: 165px; }
+  .tarot-card-inner { padding: 9px 6px; }
+  .card-name { font-size: 13px; }
+  .card-sigil svg { height: 22px; width: 22px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
+  * { @apply border-border outline-ring/50; }
 }

@@ -17,7 +17,7 @@ function Router() {
   );
 }
 
-function App() {
+export default function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark">
@@ -29,5 +29,3 @@ function App() {
     </ErrorBoundary>
   );
 }
-
-export default App;
